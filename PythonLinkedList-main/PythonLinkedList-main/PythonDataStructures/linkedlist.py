@@ -30,9 +30,7 @@ class LinkedList:
     def find_node(self, key):
         curr = self.head
         while curr and curr.data != key:
-            print("not here")
             curr = curr.next
             print("we do not have this value")
         print("we have this value")
         return curr
-
