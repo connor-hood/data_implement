@@ -1,5 +1,5 @@
 class BSTNode:
-    def __init__(self, val =None):
+    def __init__(self, val=None):
         self.right = None
         self.left = None
         self.val = val
@@ -23,3 +23,74 @@ class BSTNode:
             self.right.insert(val)
             return
         self.right = BSTNode(val)
+
+    def get_min(self):
+        current = self
+        while current.left is not None:
+            current = current.left
+        return current.val
+
+    def get_max(self):
+        current = self
+        while current.right is not None:
+            current = current.right
+        return current.val
+
+    def delete(self, val):
+        if self is None:
+            return self
+        if val < self.val:
+            self.left = self.left.delete(val)
+            return self
+        if val > self.val:
+            self.right = self.right.delete(val)
+            return self
+        if self.left is None:
+            return self.left
+        if self.right is None:
+            return self.right
+        min_larger_node = self.right
+        while min_larger_node.left:
+            min_larger_node = min_larger_node.left
+        self.val = min_larger_node.val
+        self.right = self.right.delete(min_larger_node.val)
+        return self
+
+    def exists(self, val):
+        if val is self.val:
+            return True
+
+        if val < self.val:
+            if self.left is None:
+                return False
+            return self.left.exists(val)
+
+        if self.right is None:
+            return False
+        return self.right.exists(val)
+
+    def inorder(self, vals):
+        if self.left is not None:
+            self.left.inorder(vals)
+        if self.val is not None:
+            vals.append(self.val)
+        if self.right is not None:
+            self.right.inorder(vals)
+
+    def preorder(self, vals):
+        if self.val is not None:
+            vals.append(self.val)
+        if self.left is not None:
+            self.left.preorder(vals)
+        if self.right is not None:
+            self.right.preorder(vals)
+        return vals
+
+    def postorder(self, vals):
+        if self.left is not None:
+            self.left.postorder(vals)
+        if self.right is not None:
+            self.right.postorder(vals)
+        if self.val is not None:
+            vals.append(self.val)
+        return vals
