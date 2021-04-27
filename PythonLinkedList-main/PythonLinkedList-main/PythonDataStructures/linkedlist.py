@@ -32,5 +32,4 @@ class LinkedList:
         while curr and curr.data != key:
             curr = curr.next
             print("we do not have this value")
-        print("we have this value")
         return curr
