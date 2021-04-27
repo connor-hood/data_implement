@@ -18,12 +18,11 @@ class LinkedList:
             self.tail = self.tail.next
 
     def add_to_beginning(self, data):
-        node = Node(data)
+        new_start = Node(data)
 
         if self.head.next is None:
-            print("This is the only value!")
-            return
+            print("This is the only value")
         else:
-            temporary_node = self.head.next
-            self.head = node
+            temporary_node = self.head
+            self.head = new_start
             self.head.next = temporary_node
