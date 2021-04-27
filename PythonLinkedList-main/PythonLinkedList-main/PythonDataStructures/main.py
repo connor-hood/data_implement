@@ -16,5 +16,3 @@ if __name__ == '__main__':
 
     linked_list.find_node(10)
 
-    tree = BinaryTree()
-
