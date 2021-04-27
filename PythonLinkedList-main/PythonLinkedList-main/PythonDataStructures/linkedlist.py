@@ -26,3 +26,13 @@ class LinkedList:
             temporary_node = self.head
             self.head = new_start
             self.head.next = temporary_node
+
+    def find_node(self, key):
+        curr = self.head
+        while curr and curr.data != key:
+            print("not here")
+            curr = curr.next
+            print("we do not have this value")
+        print("we have this value")
+        return curr
+

@@ -14,3 +14,5 @@ if __name__ == '__main__':
     linked_list.add_to_beginning(50)
     linked_list.append_node(90)
 
+    linked_list.find_node(70)
+
