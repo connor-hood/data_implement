@@ -1,4 +1,5 @@
 from linkedlist import LinkedList
+from bst import BinaryTree
 
 if __name__ == '__main__':
     linked_list = LinkedList()
@@ -14,3 +15,6 @@ if __name__ == '__main__':
     linked_list.add_to_beginning(30)
 
     linked_list.find_node(10)
+
+    tree = BinaryTree()
+

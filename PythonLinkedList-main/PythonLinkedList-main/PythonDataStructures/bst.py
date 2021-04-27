@@ -1,93 +1,35 @@
-class BSTNode:
-    def __init__(self, val=None):
+class BinaryTree:
+    def __init__(self, key=None):
         self.right = None
         self.left = None
-        self.val = val
+        self.key = key
 
-    def insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-        if self.val == val:
-            return
-        if val < self.val:
-            if self.left:
-                self.left.insert(val)
-                return
-            self.left = BSTNode(val)
-            return
-        if self.right:
-            self.right.insert(val)
-            return
-        self.right = BSTNode(val)
+    def set_root(self, key):
+        self.key = key
 
-    def get_min(self):
-        current = self
-        while current.left is not None:
-            current = current.left
-        return current.val
-
-    def get_max(self):
-        current = self
-        while current.right is not None:
-            current = current.right
-        return current.val
-
-    def delete(self, val):
-        if self is None:
-            return self
-        if val < self.val:
-            self.left = self.left.delete(val)
-            return self
-        if val > self.val:
-            self.right = self.right.delete(val)
-            return self
-        if self.left is None:
-            return self.left
-        if self.right is None:
-            return self.right
-        min_larger_node = self.right
-        while min_larger_node.left:
-            min_larger_node = min_larger_node.left
-        self.val = min_larger_node.val
-        self.right = self.right.delete(min_larger_node.val)
-        return self
-
-    def exists(self, val):
-        if val is self.val:
-            return True
-
-        if val < self.val:
-            if self.left is None:
-                return False
-            return self.left.exists(val)
-
-        if self.right is None:
-            return False
-        return self.right.exists(val)
-
-    def inorder(self, vals):
+    def inorder(self):
         if self.left is not None:
-            self.left.inorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
+            self.left.inorder()
+        print(self.key, end=' ')
         if self.right is not None:
-            self.right.inorder(vals)
+            self.right.inorder()
 
-    def preorder(self, vals):
-        if self.val is not None:
-            vals.append(self.val)
-        if self.left is not None:
-            self.left.preorder(vals)
-        if self.right is not None:
-            self.right.preorder(vals)
-        return vals
+    def insert_left(self, new_node):
+        self.left = new_node
 
-    def postorder(self, vals):
+    def insert_right(self, new_node):
+        self.right = new_node
+
+    def search(self, key):
+        if self.key == key:
+            return self
         if self.left is not None:
-            self.left.postorder(vals)
+            temp = self.left.search(key)
+            if temp is not None:
+                return temp
         if self.right is not None:
-            self.right.postorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        return vals
+            temp = self.right.search(key)
+            if temp is not None:
+                return temp
+            return None
+    
